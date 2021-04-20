@@ -3,13 +3,13 @@ from pygame.locals import *
 import pickle
 import select
 import socket
+import player
+import board
 
-WIDTH = 400
-HEIGHT = 400
 BUFFERSIZE = 2048
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Game')
+screen = pygame.display.set_mode((board.WIDTH, board.HEIGHT))
+pygame.display.set_caption('Forgotten Jungle')
 
 clock = pygame.time.Clock()
 
@@ -28,33 +28,6 @@ s.connect((serverAddr, 4321))
 playerid = 0
 
 sprites = { 0: sprite1, 1: sprite2, 2: sprite3, 3: sprite4 }
-
-class Minion:
-  def __init__(self, x, y, id):
-    self.x = x
-    self.y = y
-    self.vx = 0
-    self.vy = 0
-    self.id = id
-
-  def update(self):
-    self.x += self.vx
-    self.y += self.vy
-
-    if self.x > WIDTH - 50:
-      self.x = WIDTH - 50
-    if self.x < 0:
-      self.x = 0
-    if self.y > HEIGHT - 50:
-      self.y = HEIGHT - 50
-    if self.y < 0:
-      self.y = 0
-
-    if self.id == 0:
-      self.id = playerid
-
-  def render(self):
-    screen.blit(sprites[self.id % 4], (self.x, self.y))
 
 
 #game events
@@ -76,7 +49,7 @@ class GameEvent:
     self.vx = vx
     self.vy = vy
 
-cc = Minion(50, 50, 0)
+cc = player.Player(50, 50, 0)
 
 minions = []
 
@@ -92,7 +65,7 @@ while True:
       minions = []
       for minion in gameEvent:
         if minion[0] != playerid:
-          minions.append(Minion(minion[1], minion[2], minion[0]))
+          minions.append(player.Player(minion[1], minion[2], minion[0]))
     
   for event in pygame.event.get():
     if event.type == QUIT:
@@ -112,12 +85,12 @@ while True:
   clock.tick(60)
   screen.fill((255,255,255))
 
-  cc.update()
+  cc.update(playerid)
 
   for m in minions:
-    m.render()
+    m.render(screen,sprites)
 
-  cc.render()
+  cc.render(screen,sprites)
 
   pygame.display.flip()
 
