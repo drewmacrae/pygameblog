@@ -1,7 +1,12 @@
+import pygame
+
 #hexagonal board
 
-WIDTH  = 400
-HEIGHT = 400
+WIDTH  = 800
+HEIGHT = 600
+
+EmeraldPeak_S = pygame.image.load('images/tiles/EmeraldPeak.png')
+JungleDock_S = pygame.image.load('images/tiles/JungleDock.png')
 
 class Grid:
 	def __init__(self):
@@ -31,3 +36,7 @@ class Grid:
 
 	def position(self,S,x):
 		return [S,x+abs(S-2)/2]
+
+	def render(self):
+		pass
+

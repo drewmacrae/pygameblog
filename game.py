@@ -17,17 +17,19 @@ serverAddr = '127.0.0.1'
 if len(sys.argv) == 2:
   serverAddr = sys.argv[1]
 
-sprite1 = pygame.image.load('images/Pip32.png')
-sprite2 = pygame.image.load('images/tiles/EmeraldPeak100.png')
-sprite3 = pygame.image.load('images/tiles/JungleDock.png')
-sprite4 = pygame.image.load('images/Pip32.png')
+Red_S = pygame.image.load('images/pips/Red.png')
+Blue_S = pygame.image.load('images/pips/Blue.png')
+Cyan_S = pygame.image.load('images/pips/Cyan.png')
+Green_S = pygame.image.load('images/pips/Green.png')
+Magenta_S = pygame.image.load('images/pips/Magenta.png')
+Yellow_S = pygame.image.load('images/pips/Yellow.png')
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((serverAddr, 4321))
 
 playerid = 0
 
-sprites = { 0: sprite1, 1: sprite2, 2: sprite3, 3: sprite4 }
+sprites = { 0: Red_S, 1: Blue_S, 2: Cyan_S, 3: Green_S, 4: Magenta_S, 5: Yellow_S }
 
 
 #game events
