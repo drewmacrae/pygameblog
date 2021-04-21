@@ -17,10 +17,10 @@ serverAddr = '127.0.0.1'
 if len(sys.argv) == 2:
   serverAddr = sys.argv[1]
 
-sprite1 = pygame.image.load('images/BlueThing/BlueThing_front.png')
-sprite2 = pygame.image.load('images/Ladette/Ladette_front.png')
-sprite3 = pygame.image.load('images/TrashPanda/TrashPanda_front.png')
-sprite4 = pygame.image.load('images/Tubby/Tubby_front.png')
+sprite1 = pygame.image.load('images/Pip32.png')
+sprite2 = pygame.image.load('images/tiles/EmeraldPeak100.png')
+sprite3 = pygame.image.load('images/tiles/JungleDock.png')
+sprite4 = pygame.image.load('images/Pip32.png')
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((serverAddr, 4321))
