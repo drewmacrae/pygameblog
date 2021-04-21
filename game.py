@@ -51,6 +51,9 @@ class GameEvent:
     self.vx = vx
     self.vy = vy
 
+
+b = board.Board()
+
 cc = player.Player(50, 50, 0)
 
 minions = []
@@ -88,6 +91,8 @@ while True:
   screen.fill((255,255,255))
 
   cc.update(playerid)
+
+  b.render(screen)
 
   for m in minions:
     m.render(screen,sprites)
